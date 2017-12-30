@@ -101,6 +101,7 @@ class ViewController: UIViewController
             let setsFound = findSets(cards: cardsInPlay)
             print("sets found in current cards: \(setsFound.count)")
             for set in setsFound {
+                print("Set:")
                 for card in set {
                     print("card traits: \(card.traits)")
                 }
