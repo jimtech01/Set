@@ -34,9 +34,6 @@ class SetModel
                 }
             }
         }
-        playingCards = []
-        selectedCards = []
-        possibleSet = []
     }
     
     private func getRandomCard() -> Card
@@ -57,6 +54,14 @@ class SetModel
     }
     
 //  public API
+    
+    func reset()
+    {
+        playingCards = []
+        selectedCards = []
+        possibleSet = []
+        matchFound = false
+    }
     
     func getSomeCards(howMany: Int) -> [Card]
     {

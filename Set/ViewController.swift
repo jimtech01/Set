@@ -90,6 +90,13 @@ class ViewController: UIViewController
     
     @IBAction func newGame()
     {
+        game.reset()
+        print("\n***   New Game   ***\n")
+        setupGame()
+    }
+    
+    func checkEndOfGame()
+    {
         if game.playingCards.count < 81 {
             printStatus()
         } else {
@@ -108,7 +115,6 @@ class ViewController: UIViewController
             }
             printStatus()
         }
-       
     }
     
     func printStatus()
@@ -177,7 +183,7 @@ class ViewController: UIViewController
     @IBAction func dealThree()  // should call model when cards are needed, disable button when 'not available'
     {                           // test for buttons available. If match replace 'set' with 'threeNewCards'.
                                 // if 'match', replace 'threeCards' with new cards
-        if game.playingCards.count <= Constants.deck {
+        if game.playingCards.count < Constants.deck {    //  when == 81 go to end of game checking
             switch matchFound {
             case true:
                 finishMatch()
@@ -202,6 +208,7 @@ class ViewController: UIViewController
             }
         } else {
             dealButton.isEnabled = false
+            checkEndOfGame()
         }
     }
     
@@ -249,7 +256,7 @@ class ViewController: UIViewController
             cardButtons[i].layer.cornerRadius = 0.0
         }
         buttonForCard = [:]   // empty dictionary
-        
+        buttonsInUse = []
         let someCards = game.getSomeCards(howMany: Constants.startDeal)  // get 12 starting cards
         let someButtons = selectButtons(howMany: Constants.startDeal, outOf: Constants.maxButtons, using: buttonsInUse) // find 12 buttons to locate cards
         for index in someButtons.indices {
