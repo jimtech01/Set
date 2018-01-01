@@ -266,7 +266,8 @@ class ViewController: UIViewController
         updatViewFromModel()
         if dealButton != nil { dealButton.isEnabled = true }
         score = 0
-       // scoreLabel.text = "Score: \(score)"
+        if messageLabel != nil { messageLabel.text = "" }
+        
     }
     
     func selectButtons(howMany: Int, outOf: Int, using buttons: [Int]) -> [Int]
@@ -325,11 +326,6 @@ class ViewController: UIViewController
             deselect(card: index)
         }
         threeCards = []
-    }
-    
-    func gameOver()
-    {
-        
     }
     
     func displayACard(which card: Card, atButton index: Int)
