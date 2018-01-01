@@ -22,14 +22,9 @@ class ViewController: UIViewController
     var threeCards = [(Int, Card)]()    // three cards selected with deal-three, may be different
     
     var score = 0  // game score
-        
-    
-    var nextCard = Card()
     
     var matchFound = false
     var noMatch = false
-    
-    var setsFound = [[(Int, Card)]]()
     
 // MARK:  Constants
     
@@ -40,7 +35,6 @@ class ViewController: UIViewController
         static let startDeal = 12
         static let blank = ""
     }
-    
     struct Colors {
         static let red = UIColor.red
         static let green = UIColor.green
@@ -50,7 +44,6 @@ class ViewController: UIViewController
         static let white = UIColor.white
         static let yellow = UIColor.yellow
     }
-    
     struct Symbol {
         static let circle = "●"
         static let square = "■"
@@ -86,7 +79,7 @@ class ViewController: UIViewController
     @IBAction func newGame()
     {
         game.reset()
-        print("\n***   New Game   ***\n")
+        print("\n***   New Game   ***\n")  // break up print outs for debugging
         setupGame()
         score = 0
     }
@@ -153,7 +146,6 @@ class ViewController: UIViewController
     {
         return (a1[0] == a2[0] && a1[1] == a2[1] && a1[2] == a2[2] && a1[3] == a2[3]) ? true : false
     }
-    
     
     func findSets(cards: [Card]) -> [[Card]]  // find possible sets in cards-displayed (or any group of cards)
     {
@@ -329,8 +321,8 @@ class ViewController: UIViewController
     }
     
     func displayACard(which card: Card, atButton index: Int)
-    {                                               // make all the strings attributed ✓
-        // cardTraits = (num,col,shape,shade)
+    {
+        // cardTraits = [num,col,shape,shade]
         let symbolType = card.traits[2]
         let symbolCount = card.traits[0]
         let cardColor = card.traits[1]
