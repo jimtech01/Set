@@ -21,13 +21,8 @@ class ViewController: UIViewController
     
     var threeCards = [(Int, Card)]()    // three cards selected with deal-three, may be different
     
-    var score = 0 {    // game score
-        didSet {
-            if score > 0 {
-            scoreLabel.text = "Score: \(score)"
-            }
-        }
-    }
+    var score = 0  // game score
+        
     
     var nextCard = Card()
     
@@ -68,7 +63,7 @@ class ViewController: UIViewController
     
     @IBOutlet weak var scoreLabel: UILabel! {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            scoreLabel.text = "Score : \(score)"
         }
     }
     
@@ -93,6 +88,7 @@ class ViewController: UIViewController
         game.reset()
         print("\n***   New Game   ***\n")
         setupGame()
+        score = 0
     }
     
     func checkEndOfGame()
@@ -106,6 +102,9 @@ class ViewController: UIViewController
                 if let card = buttonForCard[index] { cardsInPlay.append(card) }
             }
             let setsFound = findSets(cards: cardsInPlay)
+            if setsFound.count > 0 {
+                messageLabel.text = "\(setsFound.count) sets available in current cards. "
+            } else { messageLabel.text = "Game Over! Click 'New Game'"}
             print("sets found in current cards: \(setsFound.count)")
             for set in setsFound {
                 print("Set:")
@@ -208,7 +207,7 @@ class ViewController: UIViewController
             }
         } else {
             dealButton.isEnabled = false
-            checkEndOfGame()
+          //  checkEndOfGame()
         }
     }
     
@@ -267,6 +266,7 @@ class ViewController: UIViewController
         updatViewFromModel()
         if dealButton != nil { dealButton.isEnabled = true }
         score = 0
+       // scoreLabel.text = "Score: \(score)"
     }
     
     func selectButtons(howMany: Int, outOf: Int, using buttons: [Int]) -> [Int]
@@ -313,9 +313,10 @@ class ViewController: UIViewController
             }
         } else {
             hideCards(cards: threeCards)
+            checkEndOfGame()
         }
         threeCards = []
-      //  score += 3
+        scoreLabel.text = "Score : \(score)"
     }
     
     func finishNoMatch()
