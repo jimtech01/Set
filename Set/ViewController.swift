@@ -151,10 +151,11 @@ class ViewController: UIViewController
     func findSets(cards: [Card]) -> [[Card]]  // find possible sets in cards-displayed (or any group of cards)
     {
         var matchedCards = [Card]()
-        let count = cards.count-1
+        let count = cards.count-1   // what happens when cards.count == 3, add test for cards.count == 3
+                                    // do isItASet with remaining cards and appropriate message
         var setFound = [[Card]]()
         for index1 in 0...count-1 {
-            for index2 in 1...count-2 {
+            for index2 in 1...count-2 {  // what happens when count == 2
                 let card1 = cards[index1]
                 let card2 = cards[index2]
                 let needs = findNeeds(card1: card1, card2: card2)
