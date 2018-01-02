@@ -82,6 +82,7 @@ class ViewController: UIViewController
         print("\n***   New Game   ***\n")  // break up print outs for debugging
         setupGame()
         score = 0
+        if scoreLabel != nil { scoreLabel.text = "Score: 0"}
     }
     
     func checkEndOfGame()
